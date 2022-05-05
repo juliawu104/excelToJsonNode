@@ -1,10 +1,10 @@
 const xlsx = require("xlsx");
 const fs = require("fs");
 const excelConfig = {
-    entry:'./example.xlsx',  //讀取excel位置
+    entry:'./google_sheet.xlsx',  //讀取excel位置
     sheetNo:0, //讀取excel的哪張sheet
     outputDir:'./',  //導出位置
-    outputName:'example', //導出檔案名稱
+    outputName:'google_sheet', //導出檔案名稱
 }
 
 // 讀檔案
@@ -69,23 +69,42 @@ function getMultiValueArray(
   lengthR
 ) {
   let result = [];
-  //遍歷左邊到右邊
+  // Handle Basic data
+  // Basic.xlsx
+  // for (let r = startR; r <= endR; r++) {
+  //   let obj = {};
+  //   for(let c = startC; c <= endC; c++){
+  //     let key = getCellValue(sheet, range, c, 0);
+  //     obj[key] = getCellValue(sheet, range, c, r)
+  //   }
+  //   result.push(obj);
+  // }
+  // result.shift()
+
+  // Handle Date data formate
+  // google_sheet.xlsx
+  const dateMode = wb.Workbook.WBProps.date1904;
   for (let r = startR; r <= endR; r++) {
     let obj = {};
     for(let c = startC; c <= endC; c++){
       let key = getCellValue(sheet, range, c, 0);
       obj[key] = getCellValue(sheet, range, c, r)
+      if(c == 2){
+        let val = getCellValue(sheet, range, c, r);
+        obj[key] = xlsx.SSF.format('YYYY/MM/DD', val, { date1904: dateMode })
+      }
     }
     result.push(obj);
   }
   result.shift()
-  console.log(result);
-// 預期資料: 
-// [ 
-//  {'name':'Job1','Salary':'22k','Location':'A地'},
-//  {'name':'Job2','Salary':'22k','Location':'B地'},
-//  {'name':'Job2','Salary':'22k','Location':'B地'}
-// ]
+
+ 
+  
+  // console.log(xlsx.SSF.format('YYYY-MM-DD', val, { date1904: dateMode }))
+  // 2022-02-02
+
+
+
   return { data: result };
 }
 
