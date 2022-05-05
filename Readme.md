@@ -2,6 +2,7 @@
 - npm i
 - node app.js
 - 預設使用example.json來示範
+- 建議可以安裝vscode Excel Viewer 挺好用的
 
 參數說明
 ```
