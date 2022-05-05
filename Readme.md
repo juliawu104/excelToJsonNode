@@ -3,7 +3,7 @@
 - node app.js
 - 預設使用example.json來示範
 
-參數說明｀
+參數說明
 ```
 app.js
 
@@ -14,12 +14,12 @@ const excelConfig = {
     outputName:'example', //導出檔案名稱
 }
 ```
-核心邏輯 getMultiValueArray
+核心邏輯 getMultiValueArray 函式
 ```
  app.js
 
  可使用參數
- * 在這邊客製化你的excel轉出來的檔案即可
+ * 在這邊客製化你的excel轉出來的資料
  * @param {*} sheetName sheetName
  * @param {*} sheet sheet
  * @param {*} range 獲取有值X,Y的範圍
