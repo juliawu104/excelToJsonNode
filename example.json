@@ -1,8 +1,19 @@
 {
   "data": [
-    "職缺薪水",
-    "22k",
-    "23k",
-    "24k"
+    {
+      "Name": "job1",
+      "Salary": "22k",
+      "Location": "A地"
+    },
+    {
+      "Name": "job2",
+      "Salary": "23k",
+      "Location": "B地"
+    },
+    {
+      "Name": "job3",
+      "Salary": "24k",
+      "Location": "C地"
+    }
   ]
 }

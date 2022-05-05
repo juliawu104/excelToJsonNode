@@ -71,14 +71,21 @@ function getMultiValueArray(
   let result = [];
   //遍歷左邊到右邊
   for (let r = startR; r <= endR; r++) {
-    console.log(getCellValue(sheet, range, 1, r));
-    result.push(getCellValue(sheet, range, 1, r));
+    let obj = {};
+    for(let c = startC; c <= endC; c++){
+      let key = getCellValue(sheet, range, c, 0);
+      obj[key] = getCellValue(sheet, range, c, r)
+    }
+    result.push(obj);
   }
-  //遍歷上面到下面
-  // for (let c = startC; c <= endC; c++) {
-  //     console.log(getCellValue(sheet, range, c, 0))
-  //     result.push(getCellValue(sheet, range, c, 0))
-  // }
+  result.shift()
+  console.log(result);
+// 預期資料: 
+// [ 
+//  {'name':'Job1','Salary':'22k','Location':'A地'},
+//  {'name':'Job2','Salary':'22k','Location':'B地'},
+//  {'name':'Job2','Salary':'22k','Location':'B地'}
+// ]
   return { data: result };
 }
 
